@@ -5,7 +5,7 @@ export function NavBar() {
   return (
     <Navbar bg="light" variant="light">
       <Container>
-        <Navbar.Brand href="#home">EatIntuitive</Navbar.Brand>
+        <Navbar.Brand href="#home">IntuEATive</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link href="#home">Alerts</Nav.Link>
           <Nav.Link href="#features">Overview</Nav.Link>

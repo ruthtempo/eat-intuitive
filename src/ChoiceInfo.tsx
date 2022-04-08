@@ -1,10 +1,11 @@
 import React from "react";
 import { Container, Card, Button, Navbar } from "react-bootstrap";
-import { hungerLevels, HungerInput } from "./Scale";
+import { hungerLevels, HungerInput, Components } from "./Scale";
 
 
 export function ChoiceInfo(p: {
   hungerInput: HungerInput[],
+  setCurrentComponent: (component: Components) => void
 }) {
   //latest object saved (hungerinput)
   const latestHungerInput = p.hungerInput[p.hungerInput.length - 1]
@@ -21,7 +22,7 @@ export function ChoiceInfo(p: {
           {hungerLevel?.reccommendations}
         </Card.Text>
       </Card>
-      <Button>
+      <Button onClick={() => p.setCurrentComponent('Scale')}>
         Home
       </Button>
     </Container>
