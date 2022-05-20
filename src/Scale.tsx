@@ -80,6 +80,8 @@ export function Scale() {
       hunger: input,
       time: time,
     }))
+
+    console.log(hungerInput)
   }
 
   const [currentComponent, setCurrentComponent] = useState<Components>('Scale')
