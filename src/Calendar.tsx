@@ -3,13 +3,11 @@ import { Button, Table } from 'react-bootstrap'
 import './Calendar.css'
 import { CaretLeft, CaretRight } from "react-bootstrap-icons";
 import getDaysInMonth from "date-fns/getDaysInMonth";
-import { getWeeksInMonth } from "date-fns";
+import { getISODay, getWeeksInMonth } from "date-fns";
 import { add, startOfMonth, sub } from "date-fns/esm";
 import format from "date-fns/format";
 
 
-
-const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 interface CalendarRecord {
   day: number,
@@ -21,15 +19,20 @@ interface CalendarRecord {
 function Calendario() {
 
   const weekdays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
-  const daysInMonth: CalendarRecord[] = []
-  // const [currentMonth, setCurrentMonth] = useState(today.getMonth())
+  const daysInMonth: (CalendarRecord | undefined)[] = []
   const [currentDate, setCurrentDate] = useState(new Date())
-  const numberOfDays = getDaysInMonth(currentDate) //number
+  const numberOfDays = getDaysInMonth(currentDate)
   const numberOfWeeks = getWeeksInMonth(currentDate)
-  const monthBeginning = startOfMonth(currentDate)
 
 
+  function getStartofWeek() {
+    const day = getISODay(startOfMonth(currentDate))
+    for (let i = 0; i < day - 1; i++) {
+      daysInMonth.push(undefined)
+    }
+  }
   function getDaysArray(n: number) {
+    getStartofWeek()
     for (let i = 1; i <= n; i++) {
       daysInMonth.push({
         day: i,
@@ -37,11 +40,9 @@ function Calendario() {
       })
     }
   }
-
-
   getDaysArray(numberOfDays)
 
-  function getWeeks(days: CalendarRecord[], weeksCount: number): (CalendarRecord | undefined)[][] {
+  function getWeeks(days: (CalendarRecord | undefined)[], weeksCount: number): (CalendarRecord | undefined)[][] {
     const month: (CalendarRecord | undefined)[][] = []
     let counter = 0
     //weeks
@@ -49,17 +50,14 @@ function Calendario() {
       const week = [] //array will be created 5 times, and will iterate the subloop 7 times every time (5 columns of 7 days each)
 
       //days
-      for (let i = 0; i <= 6; i++) { //days of week
-        week.push(days[counter]) //ich brauche ein index das uber die month days  - it does not exist yet
+      for (let i = 0; i <= 6; i++) {
+        week.push(days[counter])
         counter++
       };
-
-      month.push(week)//5 arrays of numbers in total
-
+      month.push(week)// x nº of arrays of numbers in total
     }
     return month
   }
-
 
   const rows = getWeeks(daysInMonth, numberOfWeeks)
 
@@ -70,9 +68,6 @@ function Calendario() {
   function prevMonth() {
     setCurrentDate(sub(currentDate, { months: 1 }))
   }
-
-
-  console.log("currentmonth: ", currentDate)
 
 
   return (
