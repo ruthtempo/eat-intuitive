@@ -112,10 +112,7 @@ function Calendario() {
 
   const [currentDate, setCurrentDate] = useState(new Date())
 
-  // const daysInMonth = getDaysArray(currentDate)
   const daysInMonth2 = getDaysArray2(currentDate)
-
-  console.log(daysInMonth2)
 
   const rows = getWeeks(daysInMonth2, currentDate)
 
