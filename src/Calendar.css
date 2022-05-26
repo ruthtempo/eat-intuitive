@@ -1,3 +1,11 @@
 .checked{
   border-radius :20px;
 }
+
+.today{
+  font-weight: bolder;
+}
+
+.notCurrent{
+  color: lightgray;
+}
