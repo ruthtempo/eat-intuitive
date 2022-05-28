@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { Button, Table } from 'react-bootstrap'
 import './Calendar.css'
 import { CaretLeft, CaretRight } from "react-bootstrap-icons";
-import getDaysInMonth from "date-fns/getDaysInMonth";
-import { differenceInCalendarDays, endOfMonth, endOfWeek, getDay, getISODay, getMonth, getWeeksInMonth, isSameDay, isSameMonth, isThisMonth, isToday, subDays, subWeeks } from "date-fns";
+import { differenceInCalendarDays, endOfMonth, endOfWeek, getWeeksInMonth, isSameDay, isSameMonth, isThisMonth, isToday, subDays, subWeeks } from "date-fns";
 import { add, startOfMonth, sub, getDate, startOfWeek } from "date-fns/esm";
 import format from "date-fns/format";
 import { HungerInput } from "./App";
 
 
 interface CalendarRecord {
-  day: number,
+  day: Date,
   checked: boolean,
   isCurrentDate: boolean,
   isCurrentMonth: boolean
@@ -42,7 +41,7 @@ function getDaysArray(selectedMonth: Date, hungerInput: HungerInput[]): Calendar
     const currentDate = add(begginingOfWeek, { days: i })
 
     daysInMonth.push({
-      day: getDate(currentDate),
+      day: currentDate,
       checked: isThereLog(currentDate, hungerInput),
       isCurrentDate: isToday(currentDate),
       isCurrentMonth: isSameMonth(currentDate, selectedMonth)
@@ -108,16 +107,18 @@ function Calendario(p: { hungerInput: HungerInput[] }) {
         <tbody>
           <tr>
             {weekdays.map(weekday => (
-              <td>{weekday}</td>
+              <td key={weekday}>{weekday}</td>
             ))}
           </tr>
           {rows.map(row => (
-            <tr key={row[0]?.day} >
+            <tr key={row[0].day.toISOString()} >
               {row.map(day => (
                 <td
-                  key={day?.day}
-                  className={`${day?.checked ? "bg-success text-white" : " "} ${day?.isCurrentDate ? "today" : ""} ${!day?.isCurrentMonth ? "notCurrent" : ""}`}
-                >{day?.day}</td>
+                  key={day.day.toISOString()}
+                  className={`${day.checked ? "bg-success text-white" : " "} ${day.isCurrentDate ? "today" : ""} ${!day.isCurrentMonth ? "notCurrent" : ""}`}
+                >
+                  {getDate(day.day)}
+                </td>
               ))}
             </tr>
           ))}
