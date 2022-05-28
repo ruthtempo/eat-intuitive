@@ -3,9 +3,11 @@ import { Button, Table } from 'react-bootstrap'
 import './Calendar.css'
 import { CaretLeft, CaretRight } from "react-bootstrap-icons";
 import getDaysInMonth from "date-fns/getDaysInMonth";
-import { differenceInCalendarDays, endOfMonth, endOfWeek, getDay, getISODay, getMonth, getWeeksInMonth, isSameMonth, isThisMonth, isToday, subDays, subWeeks } from "date-fns";
+import { differenceInCalendarDays, endOfMonth, endOfWeek, getDay, getISODay, getMonth, getWeeksInMonth, isSameDay, isSameMonth, isThisMonth, isToday, subDays, subWeeks } from "date-fns";
 import { add, startOfMonth, sub, getDate, startOfWeek } from "date-fns/esm";
 import format from "date-fns/format";
+import { HungerInput } from "./App";
+
 
 interface CalendarRecord {
   day: number,
@@ -14,53 +16,17 @@ interface CalendarRecord {
   isCurrentMonth: boolean
 }
 
-// function getDaysArray(currentDate: Date) {
-//   const numberOfDays = getDaysInMonth(currentDate)
-//   const daysInMonth: (CalendarRecord)[] = []
 
-//   //part 1: get days of previous month that belong to the first week of current month
-//   const start = startOfMonth(currentDate) //date
-//   let prevWeekDay = getDate(startOfWeek(start, { weekStartsOn: 1 }))
-//   const firstDay = getISODay(startOfMonth(currentDate))//first weekday of the month
+function isThereLog(date: Date, input: HungerInput[]): boolean {
+  for (let i = 0; i < input.length; i++) {
+    if (isSameDay(date, input[i].date)) {
+      return true
+    }
+  }
+  return false
+}
 
-//   for (let i = 0; i < firstDay - 1; i++) {
-//     daysInMonth.push( //push days of prev month that belong to the same week of the current month
-//       {
-//         day: prevWeekDay,
-//         checked: false,
-//         isCurrentDate: false,
-//         isCurrentMonth: false
-//       }
-//     )
-//     prevWeekDay += 1
-//   }
-
-//   //part 2: get days in month
-//   for (let i = 1; i <= numberOfDays; i++) {
-//     daysInMonth.push({
-//       day: i,
-//       checked: false,
-//       isCurrentDate: getDate(currentDate) === i && isToday(currentDate),
-//       isCurrentMonth: true
-//     })
-//   }
-
-//   // part 3: get days of next month
-//   const end = getISODay(endOfMonth(currentDate)) //get weekday where current month ends(1-7)
-//   for (let i = end + 1; i <= 7; i++) {
-//     daysInMonth.push({
-//       day: i - end,
-//       checked: false,
-//       isCurrentDate: false,
-//       isCurrentMonth: false
-//     })
-
-//   }
-
-//   return daysInMonth
-// }
-
-function getDaysArray2(selectedMonth: Date): CalendarRecord[] {
+function getDaysArray(selectedMonth: Date, hungerInput: HungerInput[]): CalendarRecord[] {
 
   const start = startOfMonth(selectedMonth) //date
   const begginingOfWeek = startOfWeek(start, { weekStartsOn: 1 })
@@ -77,7 +43,7 @@ function getDaysArray2(selectedMonth: Date): CalendarRecord[] {
 
     daysInMonth.push({
       day: getDate(currentDate),
-      checked: false,
+      checked: isThereLog(currentDate, hungerInput),
       isCurrentDate: isToday(currentDate),
       isCurrentMonth: isSameMonth(currentDate, selectedMonth)
     })
@@ -106,13 +72,13 @@ function getWeeks(days: (CalendarRecord)[], currentDate: Date): (CalendarRecord)
   return month
 }
 
-function Calendario() {
+function Calendario(p: { hungerInput: HungerInput[] }) {
 
   const weekdays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
 
   const [currentDate, setCurrentDate] = useState(new Date())
 
-  const daysInMonth2 = getDaysArray2(currentDate)
+  const daysInMonth2 = getDaysArray(currentDate, p.hungerInput)
 
   const rows = getWeeks(daysInMonth2, currentDate)
 

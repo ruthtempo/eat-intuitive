@@ -1,13 +1,11 @@
 import React, { useState } from "react"
 import { Button, ButtonGroup, Card, Accordion, Container } from "react-bootstrap"
 import { ChoiceInfo } from "./ChoiceInfo"
+import { HungerInput } from "./App"
+
 
 //interfaces are for objects
-export interface HungerInput {
-  date: string,
-  hunger: number,
-  time: string,
-}
+
 
 export type Components = "Scale" | "ChoiceInfo"
 
@@ -66,22 +64,18 @@ export const hungerLevels = [
 ]
 
 
-export function Scale() {
-
-  const today = new Date().toISOString()
-  const date = today.slice(0, 10)
-  const time = today.slice(11, 16)
-
-  let [hungerInput, setHungerInput] = useState<HungerInput[]>([])
+export function Scale(p: {
+  hungerInput: HungerInput[],
+  setHungerInput: (input: HungerInput[]) => void
+}) {
 
   function saveHungerInput(input: number) {
-    setHungerInput(hungerInput.concat({
-      date: date,
+    p.setHungerInput(p.hungerInput.concat({
+      date: new Date(),
       hunger: input,
-      time: time,
     }))
 
-    console.log(hungerInput)
+    console.log(p.hungerInput)
   }
 
   const [currentComponent, setCurrentComponent] = useState<Components>('Scale')
@@ -118,7 +112,8 @@ export function Scale() {
           </Card>
         </>
       )}
-      {currentComponent === "ChoiceInfo" && <ChoiceInfo hungerInput={hungerInput} setCurrentComponent={setCurrentComponent} />}
+      {currentComponent === "ChoiceInfo" && <ChoiceInfo hungerInput={p.hungerInput} setCurrentComponent={setCurrentComponent} />}
+
     </Container>
   )
 }

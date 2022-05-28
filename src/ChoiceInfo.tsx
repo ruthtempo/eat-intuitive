@@ -1,6 +1,8 @@
 import React from "react";
 import { Container, Card, Button, Navbar } from "react-bootstrap";
-import { hungerLevels, HungerInput, Components } from "./Scale";
+import { hungerLevels, Components } from "./Scale";
+import { HungerInput } from "./App"
+
 
 
 export function ChoiceInfo(p: {
