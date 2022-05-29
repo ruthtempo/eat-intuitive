@@ -6,6 +6,7 @@ import { differenceInCalendarDays, endOfMonth, endOfWeek, getWeeksInMonth, isSam
 import { add, startOfMonth, sub, getDate, startOfWeek } from "date-fns/esm";
 import format from "date-fns/format";
 import { HungerInput } from "./App";
+import { DayLogs } from "./DayLogs"
 
 
 interface CalendarRecord {
@@ -77,9 +78,9 @@ function Calendario(p: { hungerInput: HungerInput[] }) {
 
   const [currentDate, setCurrentDate] = useState(new Date())
 
-  const daysInMonth2 = getDaysArray(currentDate, p.hungerInput)
+  const daysInMonth = getDaysArray(currentDate, p.hungerInput)
 
-  const rows = getWeeks(daysInMonth2, currentDate)
+  const rows = getWeeks(daysInMonth, currentDate)
 
   function nextMonth() {
     setCurrentDate(add(currentDate, { months: 1 }))
@@ -87,6 +88,17 @@ function Calendario(p: { hungerInput: HungerInput[] }) {
 
   function prevMonth() {
     setCurrentDate(sub(currentDate, { months: 1 }))
+  }
+
+  function seeDayLogs(selectedDay: Date, hungerInput: HungerInput[]) {
+
+    const dayLogs: HungerInput[] = hungerInput.filter(input =>
+      isSameDay(input.date, selectedDay)
+    )
+
+    console.log("day log: ", dayLogs)
+
+    return dayLogs
   }
 
 
@@ -116,6 +128,7 @@ function Calendario(p: { hungerInput: HungerInput[] }) {
                 <td
                   key={day.day.toISOString()}
                   className={`${day.checked ? "bg-success text-white" : " "} ${day.isCurrentDate ? "today" : ""} ${!day.isCurrentMonth ? "notCurrent" : ""}`}
+                  onClick={() => seeDayLogs(day.day, p.hungerInput)}
                 >
                   {getDate(day.day)}
                 </td>
@@ -124,6 +137,7 @@ function Calendario(p: { hungerInput: HungerInput[] }) {
           ))}
         </tbody>
       </Table>
+      <DayLogs hungerInput={p.hungerInput} />
     </div >
   )
 }
