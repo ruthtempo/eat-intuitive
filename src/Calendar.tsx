@@ -82,6 +82,8 @@ function Calendario(p: { hungerInput: HungerInput[] }) {
 
   const rows = getWeeks(daysInMonth, currentDate)
 
+  const [selectedDay, setSelectedDay] = useState<Date | undefined>(undefined)
+
   function nextMonth() {
     setCurrentDate(add(currentDate, { months: 1 }))
   }
@@ -90,16 +92,6 @@ function Calendario(p: { hungerInput: HungerInput[] }) {
     setCurrentDate(sub(currentDate, { months: 1 }))
   }
 
-  function seeDayLogs(selectedDay: Date, hungerInput: HungerInput[]) {
-
-    const dayLogs: HungerInput[] = hungerInput.filter(input =>
-      isSameDay(input.date, selectedDay)
-    )
-
-    console.log("day log: ", dayLogs)
-
-    return dayLogs
-  }
 
 
   return (
@@ -128,7 +120,7 @@ function Calendario(p: { hungerInput: HungerInput[] }) {
                 <td
                   key={day.day.toISOString()}
                   className={`${day.checked ? "bg-success text-white" : " "} ${day.isCurrentDate ? "today" : ""} ${!day.isCurrentMonth ? "notCurrent" : ""}`}
-                  onClick={() => seeDayLogs(day.day, p.hungerInput)}
+                  onClick={() => { setSelectedDay(day.day) }}
                 >
                   {getDate(day.day)}
                 </td>
@@ -137,7 +129,9 @@ function Calendario(p: { hungerInput: HungerInput[] }) {
           ))}
         </tbody>
       </Table>
-      <DayLogs hungerInput={p.hungerInput} />
+      {selectedDay !== undefined && (
+        <DayLogs hungerInput={p.hungerInput} selectedDay={selectedDay} />
+      )}
     </div >
   )
 }

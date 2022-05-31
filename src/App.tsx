@@ -17,7 +17,12 @@ function App() {
   const [hungerInput, setHungerInput] = useState<HungerInput[]>([{
     date: new Date(2022, 4, 8),
     hunger: 7,
-  }])
+  },
+  {
+    date: new Date(2022, 4, 8, 12, 12, 2),
+    hunger: 5,
+  }
+  ])
 
   return (
     <div className="App">
