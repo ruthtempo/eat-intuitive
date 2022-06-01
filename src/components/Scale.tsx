@@ -81,38 +81,44 @@ export function Scale(p: {
   const [currentComponent, setCurrentComponent] = useState<Components>('Scale')
 
   return (
-    <Container>
+    <>
       {currentComponent === "Scale" && (
         <>
-          <Card className="py-4 mb-3">
-            <h3>How Hungry Are You? </h3>
-            <ButtonGroup className="mx-2 mb-3" aria-label="First group">
-              {hungerLevels.map(
-                (_, index) => (<Button key={index + 1} onClick={() => {
-                  saveHungerInput(index + 1)
-                  setCurrentComponent('ChoiceInfo')
-                }} >{index + 1}</Button>)
-              )}
-            </ButtonGroup>
+          <Card className=" my-3">
+            <Card.Body>
+              <Card.Header className="card text-center">How Hungry Are You?</Card.Header>
+              <ButtonGroup aria-label="First group">
+                {hungerLevels.map(
+                  (_, index) => (<Button key={index + 1} onClick={() => {
+                    saveHungerInput(index + 1)
+                    setCurrentComponent('ChoiceInfo')
+                  }} >{index + 1}</Button>)
+                )}
+              </ButtonGroup>
+            </Card.Body>
           </Card>
           <Card>
-            <h2>Hunger-Fullness Scale</h2>
-            <Accordion>
-              {hungerLevels.map(
-                (level, index) => (
-                  <Accordion.Item key={index} eventKey={index.toString()}>
-                    <Accordion.Header>{index + 1}# {level.title}</Accordion.Header>
-                    <Accordion.Body>
-                      {level.description}
-                    </Accordion.Body>
-                  </Accordion.Item>
-                )
-              )}
-            </Accordion>
+            <Card.Body>
+              <Card.Header>
+                Hunger-Fullness Scale
+              </Card.Header>
+              <Accordion>
+                {hungerLevels.map(
+                  (level, index) => (
+                    <Accordion.Item key={index} eventKey={index.toString()}>
+                      <Accordion.Header>{index + 1}# {level.title}</Accordion.Header>
+                      <Accordion.Body>
+                        {level.description}
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  )
+                )}
+              </Accordion>
+            </Card.Body>
           </Card>
         </>
       )}
       {currentComponent === "ChoiceInfo" && <ChoiceInfo hungerInput={p.hungerInput} setCurrentComponent={setCurrentComponent} />}
-    </Container>
+    </>
   )
 }

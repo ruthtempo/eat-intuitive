@@ -15,18 +15,20 @@ export function ChoiceInfo(p: {
   const hungerLevel = latestHungerInput ? hungerLevels[latestHungerInput.hunger - 1] : undefined
 
   return (
-    <Container>
-      <Card>
-        <Card.Title>
-          You are feeling {hungerLevel?.title}
-        </Card.Title>
-        <Card.Text>
-          {hungerLevel?.reccommendations}
-        </Card.Text>
+    <>
+      <Card className="my-4">
+        <Card.Body>
+          <Card.Title>
+            You are feeling {hungerLevel?.title}
+          </Card.Title>
+          <Card.Text>
+            {hungerLevel?.reccommendations}
+          </Card.Text>
+        </Card.Body>
       </Card>
       <Button onClick={() => p.setCurrentComponent('Scale')}>
-        Home
+        Back To Hunger Scale
       </Button>
-    </Container>
+    </>
   )
 }

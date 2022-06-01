@@ -95,18 +95,18 @@ function Calendar(p: { hungerInput: HungerInput[] }) {
 
 
   return (
-    <Container>
-      <h4>Calendar</h4>
+    <>
+      <div className="fs-2 text-center">Calendar</div>
       {selectedDay ? (
         <DayLogs hungerInput={p.hungerInput} selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
       ) : (
-        <Table style={{ backgroundColor: "white", maxWidth: 400, borderRadius: 20 }}>
+        <Table style={{ backgroundColor: "white", maxWidth: 400 }} className="rounded">
           <thead>
             <tr>
               <th colSpan={7}>
-                <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between align-items-center">
                   <Button variant="light" onClick={prevMonth}><CaretLeft /></Button>
-                  {format(currentDate, 'MMM yyyy')}
+                  {format(currentDate, 'MMMM yyyy')}
                   <Button variant="light" onClick={nextMonth} ><CaretRight /></Button>
                 </div>
               </th>
@@ -115,7 +115,7 @@ function Calendar(p: { hungerInput: HungerInput[] }) {
           <tbody>
             <tr>
               {weekdays.map(weekday => (
-                <td key={weekday}>{weekday}</td>
+                <td className="px-0 text-center" key={weekday}><small>{weekday}</small></td>
               ))}
             </tr>
             {rows.map(row => (
@@ -123,7 +123,7 @@ function Calendar(p: { hungerInput: HungerInput[] }) {
                 {row.map(day => (
                   <td
                     key={day.day.toISOString()}
-                    className={`${day.checked ? "bg-success text-white" : " "} ${day.isCurrentDate ? "today" : ""} ${!day.isCurrentMonth ? "notCurrent" : ""}`}
+                    className={`px-0 text-center ${day.checked ? "bg-success text-white" : " "} ${day.isCurrentDate ? "today" : ""} ${!day.isCurrentMonth ? "notCurrent" : ""}`}
                     onClick={() => { setSelectedDay(day.day) }}
                   >
                     {getDate(day.day)}
@@ -135,7 +135,7 @@ function Calendar(p: { hungerInput: HungerInput[] }) {
         </Table>
       )
       }
-    </Container >
+    </ >
   )
 }
 

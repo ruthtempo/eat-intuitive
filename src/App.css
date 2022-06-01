@@ -1,13 +1,8 @@
-.App {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  text-align: center;
-  background-color: #c7e7db;
-  min-height: 100vh;
-  max-height: 100%;
+body {
+  background-color: #c7e7db !important;
+
 }
+
 
 .App-logo {
   height: 20vmin;
