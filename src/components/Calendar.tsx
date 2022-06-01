@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Button, Table } from 'react-bootstrap'
-import './Calendar.css'
+import { Button, Table, Container } from 'react-bootstrap'
+import '../Calendar.css'
 import { CaretLeft, CaretRight } from "react-bootstrap-icons";
 import { differenceInCalendarDays, endOfMonth, endOfWeek, getWeeksInMonth, isSameDay, isSameMonth, isThisMonth, isToday, subDays, subWeeks } from "date-fns";
 import { add, startOfMonth, sub, getDate, startOfWeek } from "date-fns/esm";
 import format from "date-fns/format";
-import { HungerInput } from "./App";
+import { HungerInput } from "../App";
 import { DayLogs } from "./DayLogs"
 
 
@@ -72,7 +72,7 @@ function getWeeks(days: (CalendarRecord)[], currentDate: Date): (CalendarRecord)
   return month
 }
 
-function Calendario(p: { hungerInput: HungerInput[] }) {
+function Calendar(p: { hungerInput: HungerInput[] }) {
 
   const weekdays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
 
@@ -95,45 +95,48 @@ function Calendario(p: { hungerInput: HungerInput[] }) {
 
 
   return (
-    <div>
-      <Table style={{ backgroundColor: "white", width: 400, borderRadius: 20, margin: 20, }}>
-        <thead>
-          <tr>
-            <th colSpan={7}>
-              <div className="d-flex justify-content-between">
-                <Button variant="light" onClick={prevMonth}><CaretLeft /></Button>
-                {format(currentDate, 'MMM yyyy')}
-                <Button variant="light" onClick={nextMonth} ><CaretRight /></Button>
-              </div>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            {weekdays.map(weekday => (
-              <td key={weekday}>{weekday}</td>
-            ))}
-          </tr>
-          {rows.map(row => (
-            <tr key={row[0].day.toISOString()} >
-              {row.map(day => (
-                <td
-                  key={day.day.toISOString()}
-                  className={`${day.checked ? "bg-success text-white" : " "} ${day.isCurrentDate ? "today" : ""} ${!day.isCurrentMonth ? "notCurrent" : ""}`}
-                  onClick={() => { setSelectedDay(day.day) }}
-                >
-                  {getDate(day.day)}
-                </td>
+    <Container>
+      <h4>Calendar</h4>
+      {selectedDay ? (
+        <DayLogs hungerInput={p.hungerInput} selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
+      ) : (
+        <Table style={{ backgroundColor: "white", maxWidth: 400, borderRadius: 20 }}>
+          <thead>
+            <tr>
+              <th colSpan={7}>
+                <div className="d-flex justify-content-between">
+                  <Button variant="light" onClick={prevMonth}><CaretLeft /></Button>
+                  {format(currentDate, 'MMM yyyy')}
+                  <Button variant="light" onClick={nextMonth} ><CaretRight /></Button>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {weekdays.map(weekday => (
+                <td key={weekday}>{weekday}</td>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </Table>
-      {selectedDay !== undefined && (
-        <DayLogs hungerInput={p.hungerInput} selectedDay={selectedDay} />
-      )}
-    </div >
+            {rows.map(row => (
+              <tr key={row[0].day.toISOString()} >
+                {row.map(day => (
+                  <td
+                    key={day.day.toISOString()}
+                    className={`${day.checked ? "bg-success text-white" : " "} ${day.isCurrentDate ? "today" : ""} ${!day.isCurrentMonth ? "notCurrent" : ""}`}
+                    onClick={() => { setSelectedDay(day.day) }}
+                  >
+                    {getDate(day.day)}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )
+      }
+    </Container >
   )
 }
 
-export default Calendario
+export default Calendar

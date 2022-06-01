@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Button, ButtonGroup, Card, Accordion, Container } from "react-bootstrap"
 import { ChoiceInfo } from "./ChoiceInfo"
-import { HungerInput } from "./App"
+import { HungerInput } from "../App"
 
 
 //interfaces are for objects
@@ -113,7 +113,6 @@ export function Scale(p: {
         </>
       )}
       {currentComponent === "ChoiceInfo" && <ChoiceInfo hungerInput={p.hungerInput} setCurrentComponent={setCurrentComponent} />}
-
     </Container>
   )
 }

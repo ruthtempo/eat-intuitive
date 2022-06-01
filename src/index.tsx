@@ -5,10 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "bootstrap/scss/bootstrap.scss"
 import "bootstrap/dist/css/bootstrap.min.css"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Reminder } from './Reminder';
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/*" element={<App />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,15 +1,13 @@
 import React from "react";
-import Calendario from './Calendar'
+
 
 //here goes the graphics and Calendar component
 
-function Overview() {
+export function Charts() {
 
   return (
     <>
-      {/* <Calendario /> */}
     </>
   )
 }
 
-export default Overview;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Card, Button, Navbar } from "react-bootstrap";
 import { hungerLevels, Components } from "./Scale";
-import { HungerInput } from "./App"
+import { HungerInput } from "../App"
 
 
 

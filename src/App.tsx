@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Scale } from './Scale';
-import { NavBar } from './NavBar';
+import { Scale } from './components/Scale';
+import { NavBar } from './components/NavBar';
 import { Reminder } from './Reminder'
-import Overview from './Overview'
-import Calendario from './Calendar';
+import { Charts } from './components/Charts'
+import Calendar from './components/Calendar';
+import { Routes, Route, useNavigate } from "react-router-dom"
+import { Button, Container } from 'react-bootstrap';
+
 
 export interface HungerInput {
   date: Date,
@@ -24,18 +27,28 @@ function App() {
   }
   ])
 
+  const navigate = useNavigate();
+  const navigateToScale = () => {
+    navigate('/scale')
+  }
+
   return (
-    <div className="App">
+    <Container fluid className="App">
       <header className="App-header">
         <NavBar />
-        <Reminder />
-        <img src={logo} className="App-logo" alt="logo" />
-        <h3>Connect with your Hunger</h3>
-        <Scale hungerInput={hungerInput} setHungerInput={setHungerInput} />
-        <Overview />
-        <Calendario hungerInput={hungerInput} />
+        <Container>
+          <img src={logo} className="App-logo" alt="logo" />
+          <h3>Connect with your Hunger</h3>
+          <Button onClick={navigateToScale}>Start</Button>
+        </Container>
       </header>
-    </div>
+      <Routes>
+        <Route path="charts" element={<Charts />}></Route>
+        <Route path="scale" element={<Scale hungerInput={hungerInput} setHungerInput={setHungerInput} />} ></Route>
+        <Route path="reminder" element={<Reminder />} />
+        <Route path="calendar" element={<Calendar hungerInput={hungerInput} />} />
+      </Routes>
+    </Container>
   );
 }
 
