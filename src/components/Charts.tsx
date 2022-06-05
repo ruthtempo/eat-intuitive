@@ -12,8 +12,9 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { getDaysInMonth, getMonth } from "date-fns";
+import { add, format, getDaysInMonth, getMonth, sub } from "date-fns";
 import isSameDay from "date-fns/isSameDay";
+import { Button } from "react-bootstrap";
 
 
 ChartJS.register(
@@ -34,7 +35,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Chart.js Line Chart',
+      text: 'Monthly Hunger Overview',
     },
   },
   scales: {
@@ -68,15 +69,15 @@ export function Charts(p: {
   hungerInput: HungerInput[]
 }) {
 
-
-  const labels = getDays(new Date())
+  const [currentDate, setCurrentDate] = useState(new Date())
+  const labels = getDays(currentDate)
 
 
   const data = {
-    labels: labels.map(label => label.getDate()),
+    labels: labels.map(label => label.getDate()), //get just the day of the month
     datasets: [
       {
-        label: 'Dataset 1',
+        label: 'Hunger Inputs',
         data: labels.map(label =>
           p.hungerInput.find(input => isSameDay(input.date, label))?.hunger
         ),
@@ -88,8 +89,22 @@ export function Charts(p: {
   };
 
 
+
+  function nextMonth() {
+    setCurrentDate(add(currentDate, { months: 1 }))
+  }
+
+  function prevMonth() {
+    setCurrentDate(sub(currentDate, { months: 1 }))
+  }
+
   return (
     <>
+      <div className="d-flex justify-content-between align-items-center my-3">
+        <Button variant="light" onClick={prevMonth}> Previous Month</Button>
+        {format(currentDate, 'MMMM yyyy')}
+        <Button variant="light" onClick={nextMonth} >Next Month</Button>
+      </div>
       <Line options={options} data={data} />
     </>
   )
