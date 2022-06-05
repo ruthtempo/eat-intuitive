@@ -38,7 +38,7 @@ function getDaysArray(selectedMonth: Date, hungerInput: HungerInput[]): Calendar
   const daysInMonth: CalendarRecord[] = []
 
   for (let i = 0; i <= daysCount; i++) {
-    //frist day in the loop = begginingOfWeek
+    //first day in the loop = begginingOfWeek
     const currentDate = add(begginingOfWeek, { days: i })
 
     daysInMonth.push({

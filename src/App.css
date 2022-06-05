@@ -1,5 +1,5 @@
 body {
-  background-color: #c7e7db !important;
+  background-color: #f8f4f9 !important;
 
 }
 
@@ -15,22 +15,13 @@ body {
   }
 }
 
-.App-header {
-  background-color: #c7e7db;
 
-}
-
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
 

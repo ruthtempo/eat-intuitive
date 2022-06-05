@@ -2,13 +2,14 @@ import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Bell, BookmarkHeartFill, Calendar2Check, GraphUp, InfoCircle } from "react-bootstrap-icons";
 import { Link } from "react-router-dom"
+import intueative from '../intueative.svg'
 
 export function NavBar() {
   return (
 
     <Navbar bg="light" variant="light">
       <Container>
-        <Navbar.Brand to="/" as={Link}>IntuEATive</Navbar.Brand>
+        <Navbar.Brand to="/" as={Link}><img src={intueative} width="50"></img></Navbar.Brand>
         <Nav >
           <Nav.Item>
             <Nav.Link><InfoCircle /></Nav.Link>
