@@ -35,7 +35,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Monthly Hunger Overview',
+      text: 'Hunger Overview',
     },
   },
   scales: {
@@ -48,11 +48,6 @@ export const options = {
 
 
 
-
-
-
-
-
 function getDays(currentMonth: Date) {
   const daysInMonth = getDaysInMonth(currentMonth)
   const month: Date[] = []
@@ -62,8 +57,22 @@ function getDays(currentMonth: Date) {
   }
 
   return month
-
 }
+
+function getAverageHungerForDay(hungerInput: HungerInput[], date: Date) {
+  const dayInputs = hungerInput.filter(input => isSameDay(input.date, date))
+
+  let inputSum = 0
+  for (let i = 0; i < dayInputs.length; i++) {
+    inputSum += dayInputs[i].hunger
+  }
+
+  const average = inputSum / dayInputs.length
+
+  return average
+}
+
+
 
 export function Charts(p: {
   hungerInput: HungerInput[]
@@ -71,15 +80,15 @@ export function Charts(p: {
 
   const [currentDate, setCurrentDate] = useState(new Date())
   const labels = getDays(currentDate)
-
+  // const average = getAverageHungerForDay(p.hungerInput, currentDate)
 
   const data = {
     labels: labels.map(label => label.getDate()), //get just the day of the month
     datasets: [
       {
         label: 'Hunger Inputs',
-        data: labels.map(label =>
-          p.hungerInput.find(input => isSameDay(input.date, label))?.hunger
+        data: labels.map(label => getAverageHungerForDay(p.hungerInput, label)
+          // p.hungerInput.find(input => isSameDay(input.date, label))?.hunger
         ),
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',

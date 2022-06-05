@@ -19,12 +19,16 @@ export interface HungerInput {
 function App() {
 
   const [hungerInput, setHungerInput] = useState<HungerInput[]>([{
-    date: new Date(2022, 5, 1),
+    date: new Date(2022, 5, 3),
     hunger: 7,
   },
   {
     date: new Date(2022, 5, 3, 12, 12, 2),
-    hunger: 5,
+    hunger: 4,
+  },
+  {
+    date: new Date(2022, 5, 3, 8, 13, 2),
+    hunger: 6,
   }
   ])
 
