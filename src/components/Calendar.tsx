@@ -75,6 +75,7 @@ function getWeeks(days: (CalendarRecord)[], currentDate: Date): (CalendarRecord)
 function Calendar(p: { hungerInput: HungerInput[] }) {
 
   const weekdays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
+  const [toggleStyle, setToggleStyle] = useState(false)
 
   const [currentDate, setCurrentDate] = useState(new Date())
 
@@ -85,10 +86,12 @@ function Calendar(p: { hungerInput: HungerInput[] }) {
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(undefined)
 
   function nextMonth() {
+    setToggleStyle(!toggleStyle)
     setCurrentDate(add(currentDate, { months: 1 }))
   }
 
   function prevMonth() {
+    setToggleStyle(!toggleStyle)
     setCurrentDate(sub(currentDate, { months: 1 }))
   }
 
@@ -96,18 +99,18 @@ function Calendar(p: { hungerInput: HungerInput[] }) {
 
   return (
     <>
-      <div className="fs-2 text-center">Calendar</div>
+      <h3 className="fs-2 mb-3 text-center">Calendar</h3>
       {selectedDay ? (
         <DayLogs hungerInput={p.hungerInput} selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
       ) : (
-        <Table style={{ backgroundColor: "white", maxWidth: 400 }} className="rounded">
-          <thead>
+        <Table style={{ backgroundColor: "white", maxWidth: 400 }} className={`${toggleStyle ? "animate__animated animate__pulse" : "animate__animated animate__headShake "}`}>
+          <thead className={toggleStyle ? "bg-primary text-white" : "bg-secondary text-white"}>
             <tr>
               <th colSpan={7}>
                 <div className="d-flex justify-content-between align-items-center">
-                  <Button variant="light" onClick={prevMonth}><CaretLeft /></Button>
-                  {format(currentDate, 'MMMM yyyy')}
-                  <Button variant="light" onClick={nextMonth} ><CaretRight /></Button>
+                  <Button variant={toggleStyle ? "primary" : "secondary"} className="text-white" onClick={prevMonth}><CaretLeft /></Button>
+                  <h4 className="text-white">{format(currentDate, 'MMMM yyyy')}</h4>
+                  <Button variant={toggleStyle ? "primary" : "secondary"} className="text-white" onClick={nextMonth} ><CaretRight /></Button>
                 </div>
               </th>
             </tr>
@@ -124,7 +127,7 @@ function Calendar(p: { hungerInput: HungerInput[] }) {
                   <td
                     key={day.day.toISOString()}
                     role={day.checked ? "button" : undefined}
-                    className={`px-0 text-center ${day.checked ? "bg-success text-white" : " "} ${day.isCurrentDate ? "today" : ""} ${!day.isCurrentMonth ? "notCurrent" : ""}`}
+                    className={`px-0 text-center ${day.checked ? "bg-info text-white" : " "} ${day.isCurrentDate ? "today" : ""} ${!day.isCurrentMonth ? "notCurrent" : ""}`}
                     onClick={() => { day.checked && setSelectedDay(day.day) }}
                   >
                     {getDate(day.day)}

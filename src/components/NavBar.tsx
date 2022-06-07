@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
-import { Bell, BookmarkHeartFill, Calendar2Check, GraphUp, InfoCircle } from "react-bootstrap-icons";
+import { BellFill, BookmarkHeartFill, CalendarCheckFill, BarChartFill, QuestionCircleFill, PlusCircleFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom"
 import intueative from '../intueative.svg'
 
@@ -12,19 +12,22 @@ export function NavBar() {
         <Navbar.Brand to="/" as={Link}><img src={intueative} width="50"></img></Navbar.Brand>
         <Nav >
           <Nav.Item>
-            <Nav.Link><InfoCircle /></Nav.Link>
+            <Nav.Link className="text-primary"><QuestionCircleFill /></Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link to="/reminder" as={Link}><Bell /></Nav.Link>
+            <Nav.Link className="text-primary" to="/scale" as={Link} ><PlusCircleFill /></Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link to="/charts" as={Link}><GraphUp /></Nav.Link>
+            <Nav.Link to="/reminder" as={Link} className="text-primary"><BellFill /></Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link to="/calendar" as={Link}> <Calendar2Check /></Nav.Link>
+            <Nav.Link to="/charts" as={Link} className="text-primary"><BarChartFill /></Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link to="/resources" as={Link}><BookmarkHeartFill /></Nav.Link>
+            <Nav.Link to="/calendar" as={Link} className="text-primary"> <CalendarCheckFill /></Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link to="/resources" as={Link} className="text-primary"><BookmarkHeartFill /></Nav.Link>
           </Nav.Item>
         </Nav>
       </Container>

@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Button } from "react-bootstrap";
 import intueative from '../intueative_lon.png';
-import '../App.css';
 import { useNavigate } from "react-router-dom";
+import 'animate.css'
 
 export function Home() {
 
@@ -14,9 +14,9 @@ export function Home() {
   return (
     <>
       <Container className=" my-2 d-flex flex-column justify-content-between text-center">
-        <img src={intueative} alt="logo" />
-        <h3>Connect with your Hunger</h3>
-        <Button onClick={navigateToScale}>Start</Button>
+        <img src={intueative} alt="logo" className="animate__animated  animate__pulse" />
+        <p>Connect with your Hunger</p>
+        <Button onClick={navigateToScale} className="bg-primary text-white mt-4">Start</Button>
       </Container>
     </>
   )

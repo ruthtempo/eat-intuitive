@@ -87,12 +87,12 @@ export function Scale(p: {
     <>
       {currentComponent === "Scale" && (
         <>
-          <Card className=" my-3">
-            <Card.Body>
-              <Card.Header className="card text-center">How Hungry Are You?</Card.Header>
-              <ButtonGroup aria-label="First group">
+          <Card className="my-3" style={{ overflowY: "scroll" }}>
+            <Card.Header className="card text-center bg-primary text-white" >How Hungry Are You?</Card.Header>
+            <Card.Body className="card text-center ">
+              <ButtonGroup aria-label="First group" >
                 {hungerLevels.map(
-                  (_, index) => (<Button key={index + 1} onClick={() => {
+                  (_, index) => (<Button className="bg-primary text-white" key={index + 1} onClick={() => {
                     saveHungerInput(index + 1)
                     setCurrentComponent('ChoiceInfo')
                   }} >{index + 1}</Button>)
@@ -100,11 +100,11 @@ export function Scale(p: {
               </ButtonGroup>
             </Card.Body>
           </Card>
-          <Card>
+          <Card >
+            <Card.Header className="card text-center bg-primary text-white">
+              Hunger-Fullness Scale
+            </Card.Header>
             <Card.Body>
-              <Card.Header>
-                Hunger-Fullness Scale
-              </Card.Header>
               <Accordion>
                 {hungerLevels.map(
                   (level, index) => (
@@ -120,7 +120,8 @@ export function Scale(p: {
             </Card.Body>
           </Card>
         </>
-      )}
+      )
+      }
       {currentComponent === "ChoiceInfo" && <ChoiceInfo hungerInput={p.hungerInput} setCurrentComponent={setCurrentComponent} />}
     </>
   )

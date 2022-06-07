@@ -14,7 +14,9 @@ import {
 } from 'chart.js';
 import { add, format, getDaysInMonth, getMonth, sub } from "date-fns";
 import isSameDay from "date-fns/isSameDay";
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
+import { CaretLeft, CaretRight } from "react-bootstrap-icons";
+
 
 
 ChartJS.register(
@@ -27,24 +29,7 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top' as const,
-    },
-    title: {
-      display: true,
-      text: 'Hunger Overview',
-    },
-  },
-  scales: {
-    y: {
-      min: 1,
-      max: 10
-    }
-  }
-};
+
 
 
 
@@ -77,6 +62,23 @@ function getAverageHungerForDay(hungerInput: HungerInput[], date: Date) {
 export function Charts(p: {
   hungerInput: HungerInput[]
 }) {
+  const options = {
+    responsive: true,
+    aspectRatio: 1,
+    maintainAspectRatio: true,
+    plugins: {
+      legend: {
+        position: 'top' as const,
+      },
+
+    },
+    scales: {
+      y: {
+        min: 1,
+        max: 10
+      }
+    }
+  };
 
   const [currentDate, setCurrentDate] = useState(new Date())
   const labels = getDays(currentDate)
@@ -90,31 +92,39 @@ export function Charts(p: {
         data: labels.map(label => getAverageHungerForDay(p.hungerInput, label)
           // p.hungerInput.find(input => isSameDay(input.date, label))?.hunger
         ),
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        borderColor: '#6878af',
+        backgroundColor: '#FFB339 ',
         spanGaps: true
       },
     ],
   };
 
 
+  const [toggleStyle, setToggleStyle] = useState(false)
 
   function nextMonth() {
+    setToggleStyle(!toggleStyle)
     setCurrentDate(add(currentDate, { months: 1 }))
   }
 
   function prevMonth() {
+    setToggleStyle(!toggleStyle)
     setCurrentDate(sub(currentDate, { months: 1 }))
   }
 
   return (
     <>
-      <div className="d-flex justify-content-between align-items-center my-3">
-        <Button variant="light" onClick={prevMonth}> Previous Month</Button>
-        {format(currentDate, 'MMMM yyyy')}
-        <Button variant="light" onClick={nextMonth} >Next Month</Button>
-      </div>
-      <Line options={options} data={data} />
+      <h3 className="fs-2 mb-3 text-center text-dark">Hunger Overview</h3>
+      <Card>
+        <Card.Header className={`d-flex justify-content-center align-items-center py-3 ${toggleStyle ? "bg-primary text-white" : "bg-secondary text-white"}`} >
+          <Button className="me-3 text-white" variant={toggleStyle ? "primary" : "secondary"} onClick={prevMonth}><CaretLeft /></Button>
+          <h4>{format(currentDate, 'MMMM yyyy')}</h4>
+          <Button className="ms-3 text-white" variant={toggleStyle ? "primary" : "secondary"} onClick={nextMonth} ><CaretRight /></Button>
+        </Card.Header>
+        <Card.Body>
+          <Line options={options} data={data} />
+        </Card.Body>
+      </Card>
     </>
   )
 }

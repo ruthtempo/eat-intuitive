@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import './App.css';
 import { Scale } from './components/Scale';
 import { NavBar } from './components/NavBar';
 import { Reminder } from './Reminder'
@@ -8,7 +7,7 @@ import { Charts } from './components/Charts'
 import { Home } from './components/Home';
 import Calendar from './components/Calendar';
 import { Routes, Route } from "react-router-dom"
-import { Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { parseISO } from 'date-fns';
 
 
@@ -41,13 +40,19 @@ function App() {
         <NavBar />
       </header>
       <Container>
-        <Routes>
-          <Route path="*" element={<Home />} />
-          <Route path="charts" element={<Charts hungerInput={hungerInput} />}></Route>
-          <Route path="scale" element={<Scale hungerInput={hungerInput} setHungerInput={setHungerInput} />} ></Route>
-          <Route path="reminder" element={<Reminder />} />
-          <Route path="calendar" element={<Calendar hungerInput={hungerInput} />} />
-        </Routes>
+        <Row>
+          <Col md={{ span: 7, offset: 2 }}
+            lg={{ span: 4, offset: 4 }}
+          >
+            <Routes>
+              <Route path="*" element={<Home />} />
+              <Route path="charts" element={<Charts hungerInput={hungerInput} />}></Route>
+              <Route path="scale" element={<Scale hungerInput={hungerInput} setHungerInput={setHungerInput} />} ></Route>
+              <Route path="reminder" element={<Reminder />} />
+              <Route path="calendar" element={<Calendar hungerInput={hungerInput} />} />
+            </Routes>
+          </Col>
+        </Row>
       </Container>
     </>
   );
