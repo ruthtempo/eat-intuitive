@@ -9,6 +9,7 @@ import { Home } from './components/Home';
 import Calendar from './components/Calendar';
 import { Routes, Route } from "react-router-dom"
 import { Container } from 'react-bootstrap';
+import { parseISO } from 'date-fns';
 
 
 export interface HungerInput {
@@ -16,23 +17,23 @@ export interface HungerInput {
   hunger: number,
 }
 
+
+function getSavedHungerInputs() {
+  const text = localStorage.getItem('hungerInput')
+  const savedHungerInputs: any[] = text !== null ? JSON.parse(text) : []
+
+  const hungerInputsWithDateType = savedHungerInputs.map(i => ({
+    date: parseISO(i.date),
+    hunger: i.hunger
+  })
+  )
+
+  return hungerInputsWithDateType
+}
+
 function App() {
 
-  const [hungerInput, setHungerInput] = useState<HungerInput[]>([{
-    date: new Date(2022, 5, 3),
-    hunger: 7,
-  },
-  {
-    date: new Date(2022, 5, 3, 12, 12, 2),
-    hunger: 4,
-  },
-  {
-    date: new Date(2022, 5, 3, 8, 13, 2),
-    hunger: 6,
-  }
-  ])
-
-
+  const [hungerInput, setHungerInput] = useState<HungerInput[]>(getSavedHungerInputs())
 
   return (
     <>

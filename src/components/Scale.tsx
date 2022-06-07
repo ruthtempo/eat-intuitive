@@ -70,12 +70,15 @@ export function Scale(p: {
 }) {
 
   function saveHungerInput(input: number) {
-    p.setHungerInput(p.hungerInput.concat({
+    const newHungerInput = p.hungerInput.concat({
       date: new Date(),
       hunger: input,
-    }))
+    })
 
-    console.log(p.hungerInput)
+    localStorage.setItem('hungerInput', JSON.stringify(newHungerInput))
+
+    p.setHungerInput(newHungerInput)
+
   }
 
   const [currentComponent, setCurrentComponent] = useState<Components>('Scale')

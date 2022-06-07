@@ -123,8 +123,9 @@ function Calendar(p: { hungerInput: HungerInput[] }) {
                 {row.map(day => (
                   <td
                     key={day.day.toISOString()}
+                    role={day.checked ? "button" : undefined}
                     className={`px-0 text-center ${day.checked ? "bg-success text-white" : " "} ${day.isCurrentDate ? "today" : ""} ${!day.isCurrentMonth ? "notCurrent" : ""}`}
-                    onClick={() => { setSelectedDay(day.day) }}
+                    onClick={() => { day.checked && setSelectedDay(day.day) }}
                   >
                     {getDate(day.day)}
                   </td>
