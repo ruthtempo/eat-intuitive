@@ -6,3 +6,28 @@
 .notCurrent{
   color: lightgray;
 }
+
+.animate1{
+  background-color: #6878af ;
+  color:white;
+  animation-name:calendar;
+  animation-duration:2s;
+}
+.animate2{
+  background-color: #FFB339;
+  color:white;
+  animation-name:calendar2;
+  animation-duration:2s;
+}
+
+
+@keyframes calendar2 {
+  from{background-color: #6878af;}
+  to{background-color: #FFB339;}
+}
+
+@keyframes calendar {
+  from{background-color: #FFB339;}
+  to{background-color: #6878af;}
+  
+}

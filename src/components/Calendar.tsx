@@ -103,8 +103,8 @@ function Calendar(p: { hungerInput: HungerInput[] }) {
       {selectedDay ? (
         <DayLogs hungerInput={p.hungerInput} selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
       ) : (
-        <Table style={{ backgroundColor: "white", maxWidth: 400 }} className={`${toggleStyle ? "animate__animated animate__pulse" : "animate__animated animate__headShake "}`}>
-          <thead className={toggleStyle ? "bg-primary text-white" : "bg-secondary text-white"}>
+        <Table style={{ backgroundColor: "white", maxWidth: 400 }} className={`${toggleStyle ? "animate__animated animate__pulse" : " "}`}>
+          <thead className={toggleStyle ? "animate1" : "animate2"}>
             <tr>
               <th colSpan={7}>
                 <div className="d-flex justify-content-between align-items-center">
