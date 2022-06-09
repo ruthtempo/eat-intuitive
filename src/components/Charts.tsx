@@ -122,9 +122,9 @@ export function Charts(p: {
     <>
       <h3 className="fs-2 mb-3 text-center text-dark">Hunger Overview</h3>
       <Card>
-        <Card.Header className={`d-flex justify-content-center align-items-center py-3 ${toggleStyle ? "bg-primary text-white" : "bg-secondary text-white"}`} >
+        <Card.Header className={`d-flex justify-content-center align-items-center py-3 fs-4 ${toggleStyle ? "bg-primary text-white" : "bg-secondary text-white"}`} >
           <Button className="me-3 text-white" variant={toggleStyle ? "primary" : "secondary"} onClick={prevMonth}><CaretLeft /></Button>
-          <h4>{format(currentDate, 'MMMM yyyy')}</h4>
+          {format(currentDate, 'MMMM yyyy')}
           <Button className="ms-3 text-white" variant={toggleStyle ? "primary" : "secondary"} onClick={nextMonth} ><CaretRight /></Button>
         </Card.Header>
         <Card.Body>

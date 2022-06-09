@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Button } from "react-bootstrap";
 import intueative from '../intueative_lon.png';
+import subtitle from '../subtitle.png'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react"
 import 'animate.css'
@@ -25,7 +26,7 @@ export function Home() {
           onClick={() => setPulse(1)}
           onAnimationEnd={() => setPulse(0)}
           className={pulse ? "animate__animated animate__pulse" : ""} />
-        <p>Connect with your Hunger</p>
+        <img src={subtitle} alt="subtitle" />
         <Button onClick={navigateToScale} className="bg-primary text-white mt-4">Start</Button>
       </Container>
     </>

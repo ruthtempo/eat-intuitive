@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 import { Carousel } from "react-bootstrap"
+import back1 from '../background-lila.png'
+import back2 from '../background-yellow.png'
 
 
 export const Instructions = () => {
@@ -11,36 +13,36 @@ export const Instructions = () => {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="holder.js/800x400?text=First slide&bg=373940"
+            src={back1}
             alt="First slide"
           />
           <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h3>Connect with your Hunger</h3>
+            <p> Assess your hunger as many times a day you need to.</p>
+            <p>Set Reminders</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="holder.js/800x400?text=Second slide&bg=282c34"
+            src={back1}
             alt="Second slide"
           />
-
           <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3>Track your Hunger</h3>
+            <p>Keep track of your daily and monthly logs, identify your patterns and evolution </p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="holder.js/800x400?text=Third slide&bg=20232a"
+            src={back1}
             alt="Third slide"
           />
-
           <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            <h3> Develop Intueation & Find Balance</h3>
+            <p> Learn to appreciate when to eat and when to stop </p>
+            <p> Keep your energy levels and mood more stable along the day.  </p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

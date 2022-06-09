@@ -31,9 +31,9 @@ export const DayLogs = (p: {
   const dayLogs = seeDayLogs(p.selectedDay, p.hungerInput);
 
   return (
-    <Container className="d-flex flex-column justify-content-center align-items-center">
-      <h3>Your Logs on {format(p.selectedDay, "ccc, MMM d, y")}</h3>
-      <ListGroup className="my-2 col justify-content-center" as="ol" numbered>
+    <Container className="d-flex flex-column justify-content-center ">
+      <h4>Your Logs on {format(p.selectedDay, "ccc, MMM d, y")}</h4>
+      <ListGroup as="ol" numbered>
         {dayLogs.map((input, index) => (
           <ListGroup.Item
             key={index}

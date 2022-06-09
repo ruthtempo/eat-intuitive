@@ -120,7 +120,7 @@ export function Scale(p: {
                   (level, index) => (
                     <Accordion.Item key={index} eventKey={index.toString()}>
                       <Accordion.Header>{index + 1}# {level.title}</Accordion.Header>
-                      <Accordion.Body>
+                      <Accordion.Body style={{ backgroundColor: level.background }}>
                         {level.description}
                       </Accordion.Body>
                     </Accordion.Item>

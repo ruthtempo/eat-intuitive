@@ -103,15 +103,15 @@ function Calendar(p: { hungerInput: HungerInput[] }) {
       {selectedDay ? (
         <DayLogs hungerInput={p.hungerInput} selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
       ) : (
-        <div>
+        <div className="d-flex flex-column align-items-center">
           <h3 className="fs-2 mb-3 text-center">Calendar</h3>
-          <Table style={{ backgroundColor: "white", maxWidth: 400 }}>
+          <Table style={{ backgroundColor: "white", maxWidth: 400 }} className="border rounded">
             <thead className={toggleStyle ? "animate1" : "animate2"}>
               <tr>
                 <th colSpan={7}>
-                  <div className="d-flex justify-content-between align-items-center">
+                  <div className="d-flex justify-content-between align-items-center fs-4">
                     <Button variant={toggleStyle ? "primary" : "secondary"} className="text-white" onClick={prevMonth}><CaretLeft /></Button>
-                    <h4 className="text-white align-self-center">{format(currentDate, 'MMMM yyyy')}</h4>
+                    {format(currentDate, 'MMMM yyyy')}
                     <Button variant={toggleStyle ? "primary" : "secondary"} className="text-white" onClick={nextMonth} ><CaretRight /></Button>
                   </div>
                 </th>
