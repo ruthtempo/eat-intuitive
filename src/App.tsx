@@ -9,6 +9,10 @@ import Calendar from './components/Calendar';
 import { Routes, Route } from "react-router-dom"
 import { Col, Container, Row } from 'react-bootstrap';
 import { parseISO } from 'date-fns';
+import { Instructions } from './components/Instructions';
+import { Resources } from './components/Resources';
+import { ResourceRaisin } from './components/ResourceRaisin';
+import { ResourceIntuCheck } from './components/ResourceIntuCheck';
 
 
 export interface HungerInput {
@@ -46,10 +50,12 @@ function App() {
           >
             <Routes>
               <Route path="*" element={<Home />} />
+              <Route path="instructions" element={<Instructions />}></Route>
               <Route path="charts" element={<Charts hungerInput={hungerInput} />}></Route>
               <Route path="scale" element={<Scale hungerInput={hungerInput} setHungerInput={setHungerInput} />} ></Route>
               <Route path="reminder" element={<Reminder />} />
               <Route path="calendar" element={<Calendar hungerInput={hungerInput} />} />
+              <Route path="resources/*" element={<Resources />}></Route>
             </Routes>
           </Col>
         </Row>

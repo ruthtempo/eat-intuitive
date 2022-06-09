@@ -99,44 +99,47 @@ function Calendar(p: { hungerInput: HungerInput[] }) {
 
   return (
     <>
-      <h3 className="fs-2 mb-3 text-center">Calendar</h3>
+
       {selectedDay ? (
         <DayLogs hungerInput={p.hungerInput} selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
       ) : (
-        <Table style={{ backgroundColor: "white", maxWidth: 400 }}>
-          <thead className={toggleStyle ? "animate1" : "animate2"}>
-            <tr>
-              <th colSpan={7}>
-                <div className="d-flex justify-content-between align-items-center">
-                  <Button variant={toggleStyle ? "primary" : "secondary"} className="text-white" onClick={prevMonth}><CaretLeft /></Button>
-                  <h4 className="text-white">{format(currentDate, 'MMMM yyyy')}</h4>
-                  <Button variant={toggleStyle ? "primary" : "secondary"} className="text-white" onClick={nextMonth} ><CaretRight /></Button>
-                </div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              {weekdays.map(weekday => (
-                <td className="px-0 text-center" key={weekday}><small>{weekday}</small></td>
-              ))}
-            </tr>
-            {rows.map(row => (
-              <tr key={row[0].day.toISOString()} >
-                {row.map(day => (
-                  <td
-                    key={day.day.toISOString()}
-                    role={day.checked ? "button" : undefined}
-                    className={`px-0 text-center ${day.checked ? "bg-info text-white" : " "} ${day.isCurrentDate ? "today" : ""} ${!day.isCurrentMonth ? "notCurrent" : ""}`}
-                    onClick={() => { day.checked && setSelectedDay(day.day) }}
-                  >
-                    {getDate(day.day)}
-                  </td>
+        <div>
+          <h3 className="fs-2 mb-3 text-center">Calendar</h3>
+          <Table style={{ backgroundColor: "white", maxWidth: 400 }}>
+            <thead className={toggleStyle ? "animate1" : "animate2"}>
+              <tr>
+                <th colSpan={7}>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <Button variant={toggleStyle ? "primary" : "secondary"} className="text-white" onClick={prevMonth}><CaretLeft /></Button>
+                    <h4 className="text-white align-self-center">{format(currentDate, 'MMMM yyyy')}</h4>
+                    <Button variant={toggleStyle ? "primary" : "secondary"} className="text-white" onClick={nextMonth} ><CaretRight /></Button>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {weekdays.map(weekday => (
+                  <td className="px-0 text-center" key={weekday}><small>{weekday}</small></td>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </Table>
+              {rows.map(row => (
+                <tr key={row[0].day.toISOString()} >
+                  {row.map(day => (
+                    <td
+                      key={day.day.toISOString()}
+                      role={day.checked ? "button" : undefined}
+                      className={`px-0 text-center ${day.checked ? "bg-info text-white" : " "} ${day.isCurrentDate ? "today" : ""} ${!day.isCurrentMonth ? "notCurrent" : ""}`}
+                      onClick={() => { day.checked && setSelectedDay(day.day) }}
+                    >
+                      {getDate(day.day)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
       )
       }
     </ >

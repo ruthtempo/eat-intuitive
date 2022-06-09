@@ -77,6 +77,12 @@ export function Charts(p: {
         min: 1,
         max: 10
       }
+    },
+    elements: {
+      point: {
+        // pointStyle: 'star',
+        radius: 5,
+      }
     }
   };
 
@@ -88,13 +94,13 @@ export function Charts(p: {
     labels: labels.map(label => label.getDate()), //get just the day of the month
     datasets: [
       {
-        label: 'Hunger Inputs',
+        label: 'Your Hunger Logs (Daily Average)',
         data: labels.map(label => getAverageHungerForDay(p.hungerInput, label)
           // p.hungerInput.find(input => isSameDay(input.date, label))?.hunger
         ),
-        borderColor: '#6878af',
-        backgroundColor: '#FFB339 ',
-        spanGaps: true
+        borderColor: '#BAD9B5',
+        backgroundColor: '#BAD9B5 ',
+        spanGaps: true,
       },
     ],
   };

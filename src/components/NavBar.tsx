@@ -12,7 +12,7 @@ export function NavBar() {
         <Navbar.Brand to="/" as={Link}><img src={intueative} width="50"></img></Navbar.Brand>
         <Nav >
           <Nav.Item>
-            <Nav.Link className="text-primary"><QuestionCircleFill /></Nav.Link>
+            <Nav.Link className="text-primary" as={Link} to="/instructions"><QuestionCircleFill /></Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="text-primary" to="/scale" as={Link} ><PlusCircleFill /></Nav.Link>

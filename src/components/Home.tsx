@@ -24,7 +24,7 @@ export function Home() {
           alt="logo"
           onClick={() => setPulse(1)}
           onAnimationEnd={() => setPulse(0)}
-          className={pulse ? "animate__animated animate__bounce" : ""} />
+          className={pulse ? "animate__animated animate__pulse" : ""} />
         <p>Connect with your Hunger</p>
         <Button onClick={navigateToScale} className="bg-primary text-white mt-4">Start</Button>
       </Container>

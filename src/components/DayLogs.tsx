@@ -31,23 +31,23 @@ export const DayLogs = (p: {
   const dayLogs = seeDayLogs(p.selectedDay, p.hungerInput);
 
   return (
-    <Container>
-      <h1>Your Logs on {format(p.selectedDay, "ccc, MMM d, y")}</h1>
+    <Container className="d-flex flex-column justify-content-center align-items-center">
+      <h3>Your Logs on {format(p.selectedDay, "ccc, MMM d, y")}</h3>
       <ListGroup className="my-2 col justify-content-center" as="ol" numbered>
         {dayLogs.map((input, index) => (
           <ListGroup.Item
             key={index}
             as="li"
-            className="d-flex justify-content-between align-items-start"
+            className="d-flex justify-content-between align-items-start bg-secondary text-white mb-2"
           >
-            <div className="ms-2 me-auto">
+            <div className=" ps-2 me-auto">
               <div className="fw-bold">{format(input.date, "H:mm:ss a")}</div>
               <h5>Hunger Level: {input.hunger}</h5>
             </div>
           </ListGroup.Item>
         ))}
       </ListGroup>
-      <Button onClick={restoreSelection}>Back to Calendar</Button>
+      <Button onClick={restoreSelection} className="text-white">Back to Calendar</Button>
     </Container >
 
   )

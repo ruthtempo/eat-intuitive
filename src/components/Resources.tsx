@@ -1,0 +1,18 @@
+import React from "react"
+import { Button } from "react-bootstrap"
+import { Routes, Route, Link } from "react-router-dom"
+import { ResourceIntuCheck } from "./ResourceIntuCheck"
+import { ResourceRaisin } from "./ResourceRaisin"
+import { ResourcesNav } from "./ResourcesNav"
+
+export const Resources = () => {
+  return (
+    <>
+      <Routes>
+        <Route path="*" element={<ResourcesNav />}></Route>
+        <Route path="raisin-med" element={<ResourceRaisin />}></Route>
+        <Route path="intu-check" element={<ResourceIntuCheck />}></Route>
+      </Routes>
+    </>
+  )
+}
