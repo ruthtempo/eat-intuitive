@@ -1,7 +1,8 @@
 import React from "react";
-import { Container, Card, Button, Navbar } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { hungerLevels, Components } from "./Scale";
 import { HungerInput } from "../App"
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -9,10 +10,11 @@ export function ChoiceInfo(p: {
   hungerInput: HungerInput[],
   setCurrentComponent: (component: Components) => void
 }) {
+  const navigate = useNavigate();
   //latest object saved (hungerinput)
-  const latestHungerInput = p.hungerInput[p.hungerInput.length - 1]
+  const latestHungerInput = p.hungerInput[p.hungerInput.length - 1];
   //object according to its index position
-  const hungerLevel = latestHungerInput ? hungerLevels[latestHungerInput.hunger - 1] : undefined
+  const hungerLevel = latestHungerInput ? hungerLevels[latestHungerInput.hunger - 1] : undefined;
 
   return (
     <>
@@ -26,9 +28,15 @@ export function ChoiceInfo(p: {
           </Card.Text>
         </Card.Body>
       </Card>
-      <Button onClick={() => p.setCurrentComponent('Scale')}>
-        Back To Hunger Scale
-      </Button>
+      <div className="d-flex justify-content-between">
+        <Button className="text-white" onClick={() => p.setCurrentComponent('Scale')}>
+          Back To Hunger Scale
+        </Button>
+        <Button className="text-white" onClick={() => navigate("/reminder")}>
+          Set Alert
+        </Button>
+      </div>
+
     </>
   )
 }

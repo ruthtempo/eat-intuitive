@@ -11,8 +11,8 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { parseISO } from 'date-fns';
 import { Instructions } from './components/Instructions';
 import { Resources } from './components/Resources';
-import { ResourceRaisin } from './components/ResourceRaisin';
-import { ResourceIntuCheck } from './components/ResourceIntuCheck';
+import { AlertHunger } from './components/AlertHunger';
+
 
 
 export interface HungerInput {
@@ -36,6 +36,9 @@ function getSavedHungerInputs() {
 
 function App() {
 
+  const [show, setShow] = useState(false)
+  const toggleShow = () => setShow(false)
+
   const [hungerInput, setHungerInput] = useState<HungerInput[]>(getSavedHungerInputs())
 
   return (
@@ -48,12 +51,13 @@ function App() {
           <Col md={{ span: 7, offset: 2 }}
             lg={{ span: 4, offset: 4 }}
           >
+            <AlertHunger show={show} toggleShow={toggleShow} />
             <Routes>
               <Route path="*" element={<Home />} />
               <Route path="instructions" element={<Instructions />}></Route>
               <Route path="charts" element={<Charts hungerInput={hungerInput} />}></Route>
               <Route path="scale" element={<Scale hungerInput={hungerInput} setHungerInput={setHungerInput} />} ></Route>
-              <Route path="reminder" element={<Reminder />} />
+              <Route path="reminder" element={<Reminder setShow={setShow} />} />
               <Route path="calendar" element={<Calendar hungerInput={hungerInput} />} />
               <Route path="resources/*" element={<Resources />}></Route>
             </Routes>

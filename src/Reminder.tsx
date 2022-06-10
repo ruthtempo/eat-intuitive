@@ -1,19 +1,42 @@
-import React from "react";
-import { Toast } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 
 
-export function Reminder() {
+
+
+
+export function Reminder(p: {
+  setShow: React.Dispatch<React.SetStateAction<boolean>>
+}) {
+
+
+  const [value, setValue] = useState(30)
+
+
+
+
+  const setTimer = (v: number) => {
+    setTimeout(() => {
+      p.setShow(true)
+    }, v * 60 * 1000)
+
+  }
+
+
   return (
     <>
-      <h3 className="fs-2 mb-3 text-center text-dark">Hunger Alerts</h3>
-      <Toast>
-        <Toast.Header>
-          <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-          <strong className="me-auto">IntUeative</strong>
-          <small>11 mins ago</small>
-        </Toast.Header>
-        <Toast.Body>It's time! Connect with your Hunger NOW.</Toast.Body>
-      </Toast>
+      <Form>
+        <Form.Label>Check again with my hunger in...</Form.Label>
+        <Form.Select value={value} onChange={e => setValue(parseInt(e.target.value))}>
+          <option value={30}>30 min</option>
+          <option value={60}>1 h</option>
+          <option value={120}>2 h</option>
+        </Form.Select>
+        <Button className="text-white mt-4" onClick={() => { setTimer(value); console.log("value", value) }}>Remind me</Button>
+      </Form>
+
+
     </>
+
   )
 }
