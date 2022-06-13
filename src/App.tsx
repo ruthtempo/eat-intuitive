@@ -43,13 +43,13 @@ function App() {
 
   return (
     <>
-      <header>
-        <NavBar />
-      </header>
-      <Container>
-        <Row>
-          <Col md={{ span: 7, offset: 2 }}
+      <NavBar />
+      <Container className="overflow-auto">
+        <Row className="h-100">
+          <Col
+            md={{ span: 7, offset: 2 }}
             lg={{ span: 4, offset: 4 }}
+            className="h-100"
           >
             <AlertHunger show={show} toggleShow={toggleShow} />
             <Routes>

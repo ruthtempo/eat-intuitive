@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Button, ButtonGroup, Card, Accordion, Container } from "react-bootstrap"
+import { Button, ButtonGroup, Card, Accordion } from "react-bootstrap"
 import { ChoiceInfo } from "./ChoiceInfo"
 import { HungerInput } from "../App"
 
@@ -100,7 +100,7 @@ export function Scale(p: {
           <Card className="my-3" >
             <Card.Header className="card text-center bg-primary text-white" >How Hungry Are You?</Card.Header>
             <Card.Body className="card text-center ">
-              <ButtonGroup aria-label="First group" style={{ overflowY: "scroll" }}>
+              <ButtonGroup aria-label="First group" style={{ overflowX: "auto" }}>
                 {hungerLevels.map(
                   (l, index) => (<Button style={{ backgroundColor: l.background }} className="text-black border border-light" key={index + 1} onClick={() => {
                     saveHungerInput(index + 1)

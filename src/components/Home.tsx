@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button } from "react-bootstrap";
 import intueative from '../intueative_lon.png';
-import subtitle from '../subtitle.png'
+import subtitle from '../untertitel.svg'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react"
 import 'animate.css'

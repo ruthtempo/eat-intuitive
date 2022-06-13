@@ -4,7 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './scss/custom.scss'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Reminder } from './Reminder';
+
 
 
 

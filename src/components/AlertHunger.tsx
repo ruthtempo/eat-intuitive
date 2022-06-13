@@ -10,7 +10,7 @@ export const AlertHunger = (p: {
 
   return (
     <>
-      <Toast show={p.show} onClose={p.toggleShow}>
+      <Toast show={p.show} onClose={p.toggleShow} className="mb-4">
         <Toast.Header>
           <img src={icon} style={{ width: 30, height: 30 }} className="rounded me-2" alt="" />
           <strong className="me-auto">IntUeative</strong>
