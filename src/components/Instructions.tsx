@@ -12,15 +12,14 @@ export const Instructions = () => {
 
   return (
     <>
-      <Carousel className="h-100" interval={null} wrap={false} >
-        <Carousel.Item >
+      <Carousel className="h-100 shadow-lg rounded " interval={null} wrap={false} >
+        <Carousel.Item  >
           <div className="carousel-img">
             <img
               src={slide1}
               alt="First slide"
             />
           </div>
-
           <Carousel.Caption>
             <h3>Connect</h3>
             <p> Assess your hunger along the day</p>
@@ -88,6 +87,7 @@ export const Instructions = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+
     </>
   );
 }
