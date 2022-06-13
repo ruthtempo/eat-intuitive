@@ -12,7 +12,7 @@ export const Instructions = () => {
 
   return (
     <>
-      <Carousel variant="dark" className="h-100" interval={null} wrap={false} >
+      <Carousel className="h-100" interval={null} wrap={false} >
         <Carousel.Item >
           <div className="carousel-img">
             <img
@@ -35,7 +35,7 @@ export const Instructions = () => {
           </div>
           <Carousel.Caption>
             <h3>Set Reminders</h3>
-            <p>Keep track of your daily logs </p>
+            <p> Don't miss to check with your hunger regularly </p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -46,8 +46,8 @@ export const Instructions = () => {
             />
           </div>
           <Carousel.Caption>
-            <h3>Keep Track</h3>
-            <p>Keep track of your daily logs </p>
+            <h3>Monthly Overview</h3>
+            <p>Keep track of your monthly logs </p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -58,7 +58,7 @@ export const Instructions = () => {
             />
           </div>
           <Carousel.Caption>
-            <h3>Keep Track</h3>
+            <h3>Daily Logs</h3>
             <p>Keep track of your daily logs </p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -70,7 +70,7 @@ export const Instructions = () => {
             />
           </div>
           <Carousel.Caption>
-            <h3> Be Conciouss</h3>
+            <h3>Be Conciouss</h3>
             <p> Identify your patterns and evolution</p>
           </Carousel.Caption>
         </Carousel.Item>
@@ -83,7 +83,7 @@ export const Instructions = () => {
           </div>
           <Carousel.Caption>
             <h3> Develop Intueation</h3>
-            <p>  Develop a sense when to eat and when to stop </p>
+            <p>  Grow a sense for when to eat and when to stop </p>
             <p>  Keep your energy levels more stable through the day</p>
           </Carousel.Caption>
         </Carousel.Item>
