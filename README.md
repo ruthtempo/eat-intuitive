@@ -1,4 +1,4 @@
-<img src="intueative.png">
+<p> <img src="./public/intueative-screen.png"></p>
 
 **IntUeative** is an app to check in with your hunger.
 It can help you get into the habit of pausing and checking in with your body signals and identifying your hunger levels 
