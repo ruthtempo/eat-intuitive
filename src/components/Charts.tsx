@@ -12,7 +12,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { add, format, getDaysInMonth, getMonth, sub } from "date-fns";
+import { add, format, getDaysInMonth, sub } from "date-fns";
 import isSameDay from "date-fns/isSameDay";
 import { Button, Card } from "react-bootstrap";
 import { CaretLeft, CaretRight } from "react-bootstrap-icons";

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Button, Table, Container } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 import '../Calendar.css'
 import { CaretLeft, CaretRight } from "react-bootstrap-icons";
-import { differenceInCalendarDays, endOfMonth, endOfWeek, getWeeksInMonth, isSameDay, isSameMonth, isThisMonth, isToday, subDays, subWeeks } from "date-fns";
+import { differenceInCalendarDays, endOfMonth, endOfWeek, getWeeksInMonth, isSameDay, isSameMonth, isToday } from "date-fns";
 import { add, startOfMonth, sub, getDate, startOfWeek } from "date-fns/esm";
 import format from "date-fns/format";
 import { HungerInput } from "../App";
