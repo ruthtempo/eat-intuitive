@@ -1,5 +1,5 @@
 import React from "react"
-import { Routes, Route, Link } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import { ResourceIntuCheck } from "./ResourceIntuCheck"
 import { ResourceRaisin } from "./ResourceRaisin"
 import { ResourcesNav } from "./ResourcesNav"
