@@ -8,12 +8,12 @@ By checking in with your hunger regularly you can track your tendencies and patt
 
 Highlighted Features:
 
-* Calendar (created from scratch) 
-* Evolution chart (using ChartJS)
+* Calendar (created from scratch using Date-FNS) 
+* Evolution chart (with ChartJS)
 * Backend simulation (localStorage) 
-* Navigation with routes 
+* Navigation with routes (react-router)
 * Reminders' setting (Push notification simulation)
-* Styled with Bootstrap 
+* Styled with Bootstrap (react-bootstrap)
 
 
 
