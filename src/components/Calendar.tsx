@@ -1,20 +1,13 @@
-import React, { useState } from "react";
-import { Button, Table } from 'react-bootstrap'
-import '../Calendar.css'
-import { CaretLeft, CaretRight } from "react-bootstrap-icons";
-import { differenceInCalendarDays, endOfMonth, endOfWeek, getWeeksInMonth, isSameDay, isSameMonth, isToday } from "date-fns";
-import { add, startOfMonth, sub, getDate, startOfWeek } from "date-fns/esm";
+import { isSameDay } from "date-fns";
+import { getDate } from "date-fns/esm";
 import format from "date-fns/format";
+import React, { useState } from "react";
+import { Button, Table } from 'react-bootstrap';
+import { CaretLeft, CaretRight } from "react-bootstrap-icons";
+import { Calendar as SimplestCalendar } from "react-simplest-calendar";
 import { HungerInput } from "../App";
-import { DayLogs } from "./DayLogs"
-
-
-interface CalendarRecord {
-  day: Date,
-  checked: boolean,
-  isCurrentDate: boolean,
-  isCurrentMonth: boolean
-}
+import '../Calendar.css';
+import { DayLogs } from "./DayLogs";
 
 
 function isThereLog(date: Date, input: HungerInput[]): boolean {
@@ -26,122 +19,55 @@ function isThereLog(date: Date, input: HungerInput[]): boolean {
   return false
 }
 
-function getDaysArray(selectedMonth: Date, hungerInput: HungerInput[]): CalendarRecord[] {
-
-  const start = startOfMonth(selectedMonth) //date
-  const begginingOfWeek = startOfWeek(start, { weekStartsOn: 1 })
-
-  const end = endOfMonth(selectedMonth)
-  const endOfTheWeek = endOfWeek(end, { weekStartsOn: 1 })
-
-  const daysCount = differenceInCalendarDays(endOfTheWeek, begginingOfWeek)
-  const daysInMonth: CalendarRecord[] = []
-
-  for (let i = 0; i <= daysCount; i++) {
-    //first day in the loop = begginingOfWeek
-    const currentDate = add(begginingOfWeek, { days: i })
-
-    daysInMonth.push({
-      day: currentDate,
-      checked: isThereLog(currentDate, hungerInput),
-      isCurrentDate: isToday(currentDate),
-      isCurrentMonth: isSameMonth(currentDate, selectedMonth)
-    })
-
-  }
-
-  return daysInMonth
-}
-
-
-function getWeeks(days: (CalendarRecord)[], currentDate: Date): (CalendarRecord)[][] {
-  const numberOfWeeks = getWeeksInMonth(currentDate, { weekStartsOn: 1 })
-  const month: (CalendarRecord)[][] = []
-  let counter = 0
-  //weeks
-  for (let j = 1; j <= numberOfWeeks; j++) {
-    const week = [] //array will be created 5 times, and will iterate the subloop 7 times every time (5 columns of 7 days each)
-
-    //days
-    for (let i = 0; i <= 6; i++) {
-      week.push(days[counter])
-      counter++
-    };
-    month.push(week)// x nº of arrays of numbers in total
-  }
-  return month
-}
 
 function Calendar(p: { hungerInput: HungerInput[] }) {
-
-  const weekdays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
   const [toggleStyle, setToggleStyle] = useState(false)
-
-  const [currentDate, setCurrentDate] = useState(new Date())
-
-  const daysInMonth = getDaysArray(currentDate, p.hungerInput)
-
-  const rows = getWeeks(daysInMonth, currentDate)
-
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(undefined)
-
-  function nextMonth() {
-    setToggleStyle(!toggleStyle)
-    setCurrentDate(add(currentDate, { months: 1 }))
-  }
-
-  function prevMonth() {
-    setToggleStyle(!toggleStyle)
-    setCurrentDate(sub(currentDate, { months: 1 }))
-  }
-
-
 
   return (
     <>
-
       {selectedDay ? (
         <DayLogs hungerInput={p.hungerInput} selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
       ) : (
         <div className="d-flex flex-column align-items-center">
           <h3 className="fs-2 mb-3 text-center">Calendar</h3>
-          <Table style={{ backgroundColor: "white", maxWidth: 400 }} className="border rounded">
-            <thead className={toggleStyle ? "animate1" : "animate2"}>
-              <tr>
-                <th colSpan={7}>
-                  <div className="d-flex justify-content-between align-items-center fs-4">
-                    <Button variant={toggleStyle ? "primary" : "secondary"} className="text-white" onClick={prevMonth}><CaretLeft /></Button>
-                    {format(currentDate, 'MMMM yyyy')}
-                    <Button variant={toggleStyle ? "primary" : "secondary"} className="text-white" onClick={nextMonth} ><CaretRight /></Button>
-                  </div>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {weekdays.map(weekday => (
-                  <td className="px-0 text-center" key={weekday}><small>{weekday}</small></td>
-                ))}
-              </tr>
-              {rows.map(row => (
-                <tr key={row[0].day.toISOString()} >
-                  {row.map(day => (
-                    <td
-                      key={day.day.toISOString()}
-                      role={day.checked ? "button" : undefined}
-                      className={`px-0 text-center ${day.checked ? "bg-info text-white" : " "} ${day.isCurrentDate ? "today" : ""} ${!day.isCurrentMonth ? "notCurrent" : ""}`}
-                      onClick={() => { day.checked && setSelectedDay(day.day) }}
-                    >
-                      {getDate(day.day)}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+          <SimplestCalendar
+            renderTable={(children) => <Table style={{ backgroundColor: "white", maxWidth: 400 }}>{children}</Table>}
+            renderDay={(record) => {
+              const hasLog = isThereLog(record.day, p.hungerInput)
+              return (
+                <td
+                  key={record.day.toISOString()}
+                  role={hasLog ? "button" : undefined}
+                  className={`px-0 text-center ${hasLog ? "bg-info text-white" : " "} ${record.isCurrentDate ? "today" : ""} ${!record.isCurrentMonth ? "notCurrent" : ""}`}
+                  onClick={() => { hasLog && setSelectedDay(record.day) }}
+                >
+                  {getDate(record.day)}
+                </td>
+              )
+            }}
+            renderMonthTitle={(currentDate, prevMonth, nextMonth) =>
+              <div className="d-flex justify-content-between align-items-center fs-4">
+                <Button
+                  variant={toggleStyle ? "primary" : "secondary"}
+                  className="text-white"
+                  onClick={() => { prevMonth(); setToggleStyle(!toggleStyle) }}
+                >
+                  <CaretLeft />
+                </Button>
+                {format(currentDate, 'MMMM yyyy')}
+                <Button
+                  variant={toggleStyle ? "primary" : "secondary"}
+                  className="text-white"
+                  onClick={() => { nextMonth(); setToggleStyle(!toggleStyle) }}
+                >
+                  <CaretRight />
+                </Button>
+              </div>
+            }
+          />
         </div>
-      )
-      }
+      )}
     </ >
   )
 }

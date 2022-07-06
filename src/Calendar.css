@@ -20,6 +20,10 @@
   animation-duration:2s;
 }
 
+.icon{
+  font-size: 25px;
+}
+
 
 @keyframes calendar2 {
   from{background-color: #6878af;}

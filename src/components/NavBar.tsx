@@ -12,22 +12,22 @@ export function NavBar() {
         <Navbar.Brand to="/" as={Link}><img src={intueative} width="50" alt="logo"></img></Navbar.Brand>
         <Nav >
           <Nav.Item>
-            <Nav.Link className="text-primary" as={Link} to="/instructions"><QuestionCircleFill /></Nav.Link>
+            <Nav.Link className="text-primary" as={Link} to="/instructions"><QuestionCircleFill className="icon" /></Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="text-primary" to="/scale" as={Link} ><PlusCircleFill /></Nav.Link>
+            <Nav.Link className="text-primary" to="/scale" as={Link} ><PlusCircleFill className="icon" /></Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link to="/reminder" as={Link} className="text-primary"><BellFill /></Nav.Link>
+            <Nav.Link to="/reminder" as={Link} className="text-primary"><BellFill className="icon" /></Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link to="/charts" as={Link} className="text-primary"><BarChartFill /></Nav.Link>
+            <Nav.Link to="/charts" as={Link} className="text-primary"><BarChartFill className="icon" /></Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link to="/calendar" as={Link} className="text-primary"> <CalendarCheckFill /></Nav.Link>
+            <Nav.Link to="/calendar" as={Link} className="text-primary"> <CalendarCheckFill className="icon" /></Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link to="/resources" as={Link} className="text-primary"><BookmarkHeartFill /></Nav.Link>
+            <Nav.Link to="/resources" as={Link} className="text-primary"><BookmarkHeartFill className="icon" /></Nav.Link>
           </Nav.Item>
         </Nav>
       </Container>

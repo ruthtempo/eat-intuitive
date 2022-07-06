@@ -23,6 +23,7 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
+    "react-simplest-calendar": "^1.0.0",
     "remeda": "^0.0.35",
     "sass": "^1.50.0",
     "typescript": "^4.6.3",
