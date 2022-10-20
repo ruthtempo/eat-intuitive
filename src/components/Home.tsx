@@ -1,10 +1,9 @@
-import React from "react";
-import { Container, Button } from "react-bootstrap";
+import "animate.css";
+import { useState } from "react";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import intueative from "../intueative_lon.png";
 import subtitle from "../untertitel.svg";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import "animate.css";
 
 export function Home() {
   const navigate = useNavigate();
