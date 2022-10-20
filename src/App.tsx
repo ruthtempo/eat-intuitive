@@ -38,42 +38,40 @@ function App() {
   );
 
   return (
-    <>
+    <Container className="overflow-auto">
       <NavBar />
-      <Container className="overflow-auto">
-        <Row className="h-100">
-          <Col
-            md={{ span: 7, offset: 2 }}
-            lg={{ span: 4, offset: 4 }}
-            className="h-100"
-          >
-            <AlertHunger show={show} toggleShow={toggleShow} />
-            <Routes>
-              <Route path="*" element={<Home />} />
-              <Route
-                path="charts"
-                element={<Charts hungerInput={hungerInput} />}
-              ></Route>
-              <Route
-                path="scale"
-                element={
-                  <Scale
-                    hungerInput={hungerInput}
-                    setHungerInput={setHungerInput}
-                  />
-                }
-              ></Route>
-              <Route path="reminder" element={<Reminder setShow={setShow} />} />
-              <Route
-                path="calendar"
-                element={<Calendar hungerInput={hungerInput} />}
-              />
-              <Route path="resources/*" element={<Resources />}></Route>
-            </Routes>
-          </Col>
-        </Row>
-      </Container>
-    </>
+      <Row className="h-100">
+        <Col
+          md={{ span: 7, offset: 2 }}
+          lg={{ span: 4, offset: 4 }}
+          className="h-100"
+        >
+          <AlertHunger show={show} toggleShow={toggleShow} />
+          <Routes>
+            <Route path="*" element={<Home />} />
+            <Route
+              path="charts"
+              element={<Charts hungerInput={hungerInput} />}
+            ></Route>
+            <Route
+              path="scale"
+              element={
+                <Scale
+                  hungerInput={hungerInput}
+                  setHungerInput={setHungerInput}
+                />
+              }
+            ></Route>
+            <Route path="reminder" element={<Reminder setShow={setShow} />} />
+            <Route
+              path="calendar"
+              element={<Calendar hungerInput={hungerInput} />}
+            />
+            <Route path="resources/*" element={<Resources />}></Route>
+          </Routes>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
