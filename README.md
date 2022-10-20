@@ -1,4 +1,4 @@
-<p> <img src="./public/intueative-screen.png"></p>
+<p> <img src="./public/intueative-screen.png" width="800"></p>
 
 **IntUeative** is an app to check in with your hunger.
 It can help you get into the habit of pausing and checking in with your body signals and identifying your hunger levels 
@@ -15,6 +15,9 @@ Highlighted Features:
 * Reminders' setting (Push notification simulation)
 * Styled with Bootstrap (react-bootstrap)
 
+Be Conciouss: Identify your patterns and evolution & Keep track of your daily and monthly logs
+Set Reminders: Don't miss to check with your hunger regularly
+Develop Intueation: Grow a sense for when to eat and when to stop 
 
 
 
