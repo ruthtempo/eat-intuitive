@@ -23,10 +23,8 @@ export function Home() {
         className={`w-100 ${pulse ? "animate__animated animate__pulse" : ""}`}
       />
       <img src={subtitle} alt="subtitle" />
-      <p> Grow a sense for when to eat and when to stop </p>
-      <h5> Develop Intueation</h5>
       <Button onClick={navigateToScale} className="bg-primary text-white mt-4">
-        Check with your Hunger
+        Let's check with my Hunger
       </Button>
     </div>
   );
