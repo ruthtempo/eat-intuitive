@@ -22,4 +22,6 @@ Highlighted Features:
 
 
 
+Code Quality evaluation: 
 
+[![CodeFactor](https://www.codefactor.io/repository/github/ruthtempo/eat-intuitive/badge)](https://www.codefactor.io/repository/github/ruthtempo/eat-intuitive)
